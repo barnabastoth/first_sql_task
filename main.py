@@ -86,12 +86,15 @@ def main():
     }
     allowed_inputs = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     while True:
-        chosen_option = int(input("Enter a number between 1 and 9: "))
-        if chosen_option in allowed_inputs:
-            options[chosen_option]()
-        elif chosen_option == 0:
-            break
-        else:
+        try:
+            chosen_option = int(input("Enter a number between 1 and 9: "))
+            if chosen_option in allowed_inputs:
+                options[chosen_option]()
+            elif chosen_option == 0:
+                break
+            else:
+                print("Incorrect input! Valid inputs are: 1, 2, 3, 4, 5, 6, 7, 8, 9")
+        except ValueError:
             print("Incorrect input! Valid inputs are: 1, 2, 3, 4, 5, 6, 7, 8, 9")
 
 
