@@ -1,4 +1,5 @@
 import psycopg2
+import menu
 
 
 def open_database(func):
@@ -62,17 +63,7 @@ def delete_mauriseu():
 
 
 def main():
-    print("Choose from one of the following options: ")
-    print("0: Exit")
-    print("1: Full name of all the mentors")
-    print("2: Nick names of the mentors at Miskolc")
-    print("3: Full name of Carol the applicant")
-    print("4: Full name of Applicant from Adipiscingenimmi")
-    print("5: Add Markus Schaffarzyk to the Applicants")
-    print("6: Show details of Markus Schaffarzyk the Applicant")
-    print("7: Update phone number of Jemina Foreman")
-    print("8: Show phone number of Jemina Foreman")
-    print("9: Delete Applicants with @mauriseu.net email adress ending")
+    allowed_inputs = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     options = {
         1: mentor_names,
         2: mikolc_mentor_nicknames,
@@ -84,18 +75,7 @@ def main():
         8: show_jemima_foreman,
         9: delete_mauriseu
     }
-    allowed_inputs = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    while True:
-        try:
-            chosen_option = int(input("Enter a number between 1 and 9: "))
-            if chosen_option in allowed_inputs:
-                options[chosen_option]()
-            elif chosen_option == 0:
-                break
-            else:
-                print("Incorrect input! Valid inputs are: 1, 2, 3, 4, 5, 6, 7, 8, 9")
-        except ValueError:
-            print("Incorrect input! Valid inputs are: 1, 2, 3, 4, 5, 6, 7, 8, 9")
+    menu.sql_menu(options, allowed_inputs)
 
 
 if __name__ == '__main__':
