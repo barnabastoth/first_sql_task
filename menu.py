@@ -6,10 +6,8 @@ def sql_menu(options, allowed_inputs):
     print("3: Full name of Carol the applicant")
     print("4: Full name of Applicant from Adipiscingenimmi")
     print("5: Add Markus Schaffarzyk to the Applicants")
-    print("6: Show details of Markus Schaffarzyk the Applicant")
-    print("7: Update phone number of Jemina Foreman")
-    print("8: Show phone number of Jemina Foreman")
-    print("9: Delete Applicants with @mauriseu.net email adress ending")
+    print("6: Update phone number of Jemina Foreman")
+    print("7: Delete Applicants with @mauriseu.net email adress ending")
     incorrect_input = True
     while incorrect_input:
         try:

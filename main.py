@@ -1,4 +1,5 @@
 import psycopg2
+from psycopg2 import IntegrityError
 import menu
 
 
@@ -36,9 +37,19 @@ def girl_from_adipiscingenimmi():
 
 
 @open_database
+def check_for_markus():
+    return """SELECT exists(SELECT application_code FROM applicants WHERE application_code = 54823)"""
+
+
 def new_applicant_markus():
-    return """INSERT INTO applicants(first_name,last_name,phone_number,email,application_code)
-            VALUES ('Markus', 'Schaffarzyk', '003620/725-2666','djnovus@groovecoverage.com', 54823);"""
+    connect_str = "dbname='exworm' user='exworm' host='localhost' password='fanatic99'"
+    conn = psycopg2.connect(connect_str)
+    conn.autocommit = True
+    cursor = conn.cursor()
+    cursor.execute("""INSERT INTO applicants(first_name, last_name, phone_number, email, application_code)
+            SELECT 'Markus', 'Schaffarzyk', '003620/725-2666','djnovus@groovecoverage.com', 54823
+            WHERE NOT EXISTS (SELECT * FROM applicants WHERE application_code=54823);""")
+    show_applicant_markus()
 
 
 @open_database
@@ -46,10 +57,14 @@ def show_applicant_markus():
     return """SELECT * FROM applicants WHERE application_code=54823;"""
 
 
-@open_database
 def update_jemima_foreman():
-    return """UPDATE applicants SET phone_number = '003670/223-7459'
-           WHERE first_name = 'Jemima' AND last_name = 'Foreman';"""
+    connect_str = "dbname='exworm' user='exworm' host='localhost' password='fanatic99'"
+    conn = psycopg2.connect(connect_str)
+    conn.autocommit = True
+    cursor = conn.cursor()
+    cursor.execute("""UPDATE applicants SET phone_number = '003670/223-7459'
+           WHERE first_name = 'Jemima' AND last_name = 'Foreman';""")
+    show_jemima_foreman()
 
 
 @open_database
@@ -63,18 +78,16 @@ def delete_mauriseu():
 
 
 def main():
-    allowed_inputs = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     options = {
         1: mentor_names,
         2: mikolc_mentor_nicknames,
         3: carol_full_name,
         4: girl_from_adipiscingenimmi,
         5: new_applicant_markus,
-        6: show_applicant_markus,
-        7: update_jemima_foreman,
-        8: show_jemima_foreman,
-        9: delete_mauriseu
+        6: update_jemima_foreman,
+        7: delete_mauriseu
     }
+    allowed_inputs = [_ for _ in range(1, len(options) + 1)]
     menu.sql_menu(options, allowed_inputs)
 
 
