@@ -19,6 +19,8 @@ def sql_menu(options, allowed_inputs, menu_options):
                 else:
                     options[chosen_option]()
             elif chosen_option == 0:
+                os.system('clear')
+                print("Thank you for using me")
                 incorrect_input = False
             else:
                 print("Incorrect input! Valid inputs are: 1, 2, 3, 4, 5, 6, 7, 8, 9")
