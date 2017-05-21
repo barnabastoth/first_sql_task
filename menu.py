@@ -11,7 +11,7 @@ def sql_menu(options, allowed_inputs):
     incorrect_input = True
     while incorrect_input:
         try:
-            chosen_option = int(input("Enter a number between 1 and 9: "))
+            chosen_option = int(input("Enter a number between 1 and {0}: ".format(len(allowed_inputs))))
             if chosen_option in allowed_inputs:
                 options[chosen_option]()
             elif chosen_option == 0:
