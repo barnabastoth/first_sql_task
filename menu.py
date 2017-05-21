@@ -13,6 +13,9 @@ def sql_menu(options, allowed_inputs):
         try:
             chosen_option = int(input("Enter a number between 1 and {0}: ".format(len(allowed_inputs))))
             if chosen_option in allowed_inputs:
+                if chosen_option == 7:
+                    print("Applicant with email @mauriseu.net has been removed from the database")
+                    options[chosen_option]()
                 options[chosen_option]()
             elif chosen_option == 0:
                 incorrect_input = False
