@@ -12,6 +12,7 @@ def main():
         6: queries.update_jemima_foreman,
         7: queries.delete_mauriseu
     }
+
     menu_options = [
         "Choose from one of the following options: ",
         "0: Exit",
@@ -23,6 +24,7 @@ def main():
         "6: Update phone number of Jemina Foreman",
         "7: Delete Applicants with @mauriseu.net email adress ending"
     ]
+    
     allowed_inputs = [_ for _ in range(1, len(options) + 1)]
     menu.sql_menu(options, allowed_inputs, menu_options)
 
