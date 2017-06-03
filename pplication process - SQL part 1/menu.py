@@ -23,6 +23,6 @@ def sql_menu(options, allowed_inputs, menu_options):
                 print("Thank you for using me")
                 incorrect_input = False
             else:
-                print("Incorrect input! Valid inputs are: 1, 2, 3, 4, 5, 6, 7, 8, 9")
+                print("Incorrect input! Valid inputs are: {}!".format(allowed_inputs))
         except ValueError:
-            print("Incorrect input! Valid inputs are: 1, 2, 3, 4, 5, 6, 7, 8, 9")
+            print("Incorrect input! Valid inputs are: {}!".format(allowed_inputs))

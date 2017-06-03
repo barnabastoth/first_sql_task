@@ -9,8 +9,9 @@ def info_from_database(func):
         cursor = conn.cursor()
         cursor.execute(func())
         rows = cursor.fetchall()
-        for row in rows:
-            print(" ".join(map(str, row)))
+        # for row in rows:
+        #     print(" ".join(map(str, row)))
+        return rows
     return wrap
 
 
