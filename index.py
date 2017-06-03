@@ -17,7 +17,7 @@ def Mentors_and_Schools():
 
 @app.route('/all-school')
 def Mentors_and_Schools_all():
-    title = 'Mentors and Schools'
+    title = 'All Schools and Mentors'
     data_list = queries2.mentors_and_schools_all()
     return render_template('index.html', data_list=data_list, title=title)
 
@@ -26,6 +26,13 @@ def Mentors_and_Schools_all():
 def Mentors_by_country():
     title = 'Mentors and Schools'
     data_list = queries2.mentors_by_country()
+    return render_template('index.html', data_list=data_list, title=title)
+
+
+@app.route('/contact')
+def contact_page():
+    title = 'Contact Page'
+    data_list = queries2.contacts()
     return render_template('index.html', data_list=data_list, title=title)
 
 
