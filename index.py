@@ -29,10 +29,17 @@ def Mentors_by_country():
     return render_template('index.html', data_list=data_list, title=title)
 
 
-@app.route('/contact')
+@app.route('/contacts')
 def contact_page():
     title = 'Contact Page'
     data_list = queries2.contacts()
+    return render_template('index.html', data_list=data_list, title=title)
+
+
+@app.route('/applicants')
+def applicants_page():
+    title = 'Applicants page'
+    data_list = queries2.applicants()
     return render_template('index.html', data_list=data_list, title=title)
 
 
