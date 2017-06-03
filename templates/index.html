@@ -2,22 +2,37 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
     <title>{{ title }}</title>
 </head>
 
 <body>
-    <table>
-        {% for items in data_list %}
-        <tr>
-            {% for item in items %}
-            <td>{{ item }}</td>
+    <h1>{{ title }}</h1>
+    <div>
+        <a id="home" href="/">
+          <img src="http://icons.iconarchive.com/icons/robsonbillponte/iRob/512/Folder-Home-Folder-icon.png" height="50px" width="50px"/>
+        </a>
+
+        <table>
+            <thead>
+                <tr>
+                    {% for title in column_titles%}
+                    <td>{{ title }}</td>
+                    {% endfor %}
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for items in data_list %}
+            <tr>
+                {% for item in items %}
+                <td>{{ item|safe }}</td>
+                {% endfor %}
+            </tr>
             {% endfor %}
-        </tr>
-        {% endfor %}
-    </table>
+            </tbody>
+        </table>
+    </div>
 </body>
 
 </html>

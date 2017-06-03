@@ -38,7 +38,6 @@ def mentors_and_schools():
                             SELECT CONCAT(mentors.first_name, ' ', mentors.last_name) AS full_name,
                             schools.name, schools.country
                             FROM mentors
-                            gp
                             LEFT JOIN schools ON mentors.city = schools.city 
                             ORDER BY mentors.ID;
                             """)
@@ -46,9 +45,10 @@ def mentors_and_schools():
 
 def mentors_and_schools_all():
     return fetch_database("""
-                            SELECT CONCAT(mentors.first_name, ' ', mentors.last_name) AS name, schools.name,
+                            SELECT CONCAT(mentors.first_name, ' ', mentors.last_name) AS full_name, schools.name,
                             schools.country
-                            FROM mentors FULL OUTER JOIN schools ON mentors.city = schools.city 
+                            FROM mentors 
+                            FULL OUTER JOIN schools ON mentors.city = schools.city
                             ORDER BY mentors.ID;
                             """)
 
@@ -85,7 +85,7 @@ def applicants():
 def applicants_and_mentors():
     return fetch_database("""
                             SELECT applicants.first_name, applicants.application_code,
-                            mentors.first_name, mentors.last_name
+                            CONCAT(mentors.first_name, ' ', mentors.last_name) AS full_name
                             FROM applicants
                             FULL OUTER JOIN applicants_mentors ON applicants.id=applicants_mentors.applicant_id
                             LEFT JOIN mentors ON applicants_mentors.mentor_id=mentors.id
